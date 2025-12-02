@@ -5,9 +5,9 @@ import std.array;
 import std.datetime.stopwatch;
 
 unittest {
-    writeln("is_valid 999 ",is_valid("999"));
-    writeln("is_valid 9898 ",is_valid("9898"));
-    writeln("is_valid 9897 ",is_valid("9897"));    
+    assert(is_valid("999"));
+    assert( ! is_valid("9898"));
+    assert(is_valid("9897"));    
 }
 
 void doit(string fname) {
@@ -48,7 +48,6 @@ bool is_valid(string id) {
     }
     return false;
 }
-
 
 void main(string[] args) {
     if(args.length < 2) {
