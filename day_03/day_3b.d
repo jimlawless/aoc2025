@@ -1,9 +1,7 @@
 import std.stdio;
 import std.conv;
 import std.file;
-import std.array;
 import std.datetime.stopwatch;
-import std.format;
 
 unittest {
     assert(joltage("987654321111111")==987654321111L);
