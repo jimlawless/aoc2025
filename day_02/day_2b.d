@@ -9,7 +9,8 @@ unittest {
     assert(! is_valid("12341234"));
     assert( is_valid("123451234"));
     assert(! is_valid("123123123"));
-    assert(! is_valid("1111111"));    
+    assert(! is_valid("1111111"));  
+    assert(! is_valid("3333333"));    
 }
 
 void doit(string fname) {
@@ -38,12 +39,25 @@ void doit(string fname) {
     file.close();
 }
 
-bool is_valid(string id) {        
-    auto r=regex(r"^(\d+)\1+$");
-    if(match(id,r))
+bool is_valid(string id) {
+    int len=id.length;
+    for(int i=0;i<len/2;i++) {
+        if(len%(i+1)==0) {
+            string needle=id[0..i+1];
+            string haystack=id[i+1..$]; 
+            if(!is_valid_recurse(needle,haystack))
+                return false;
+        }
+    }
+    return true;
+}
+
+bool is_valid_recurse(string needle,string haystack) {
+    if(needle==haystack)
         return false;
-    else
-        return true;    
+    if(needle==haystack[0..needle.length]) 
+        return is_valid_recurse(needle,haystack[needle.length..$]);
+    return true;
 }
 
 void main(string[] args) {
