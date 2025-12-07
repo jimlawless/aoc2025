@@ -2,7 +2,6 @@ import std.stdio;
 import std.file;
 import std.array;
 import std.datetime.stopwatch;
-import std.conv;
 
 void doit(string fname) {
     auto file = File(fname,"r");
@@ -62,4 +61,5 @@ void main(string[] args) {
     }
     sw.stop();
     writeln("Elapsed time: ",sw.peek());
+
 }
